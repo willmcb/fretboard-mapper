@@ -1,22 +1,26 @@
 import '../styles/note.css';
 
-interface NoteValues {
-  noteName: string,
+export type NoteProps = {
+  name: string,
   active: boolean,
   visible: boolean
 }
 
-function Note({noteName, active, visible}:NoteValues): JSX.Element {
+function Note({name, active, visible}:NoteProps): JSX.Element {
   if (visible) {
+
     return (
       <span className={classes(active)} data-testid="note-elem">
-       {noteName}
+       {name}
       </span>
     );
+
   } else {
+
     return (
-      <span data-testid="note-elem"></span>
+      <span className="blank-note" data-testid="note-elem"></span>
     );
+
   }
 }
 
