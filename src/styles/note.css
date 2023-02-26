@@ -17,10 +17,12 @@
 .active-note {
   background-color: var(--active-note-colour);
 }
+
 .blank-note {
   display: inline-block;
   width: 50px;
   height: 50px;
+  border: 1px solid white;
   margin: 5px;
   line-height: 47px; /* set to equal the height of the span */
 }

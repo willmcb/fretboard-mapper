@@ -5,11 +5,19 @@ export type NoteProps = {
 }
 
 function Note({name}:NoteProps): JSX.Element {
-  return (
-    <span data-testid="note-elem" className="note" >
-     {name}
-    </span>
-  );
+  if (name === '-') {
+    return (
+      <span data-testid="note-elem" className="note blank-note" >
+       {name}
+      </span>
+    );
+  } else {
+    return (
+      <span data-testid="note-elem" className="note" >
+       {name}
+      </span>
+    );
+  }
 }
 
 export default Note;
