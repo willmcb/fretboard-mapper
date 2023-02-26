@@ -1,39 +1,25 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Fret from '../components/Fret';
 import { NoteProps } from '../components/Note';
-import Note from '../components/Note';
 
 const notePropsArray: NoteProps[] = [
   {
     name: "E",
-    active: true,
-    visible: true
   },
   {
     name: "A",
-    active: true,
-    visible: true
   },
   {
     name: "D",
-    active: true,
-    visible: true
   },
   {
     name: "G",
-    active: true,
-    visible: true
   },
   {
     name: "B",
-    active: true,
-    visible: true
   },
   {
     name: "E",
-    active: true,
-    visible: true
   }
 ]
 
