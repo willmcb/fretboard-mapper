@@ -1,7 +1,7 @@
 import '../styles/note.css';
 
-export type NoteProps = {
-  name: string,
+export interface NoteProps {
+  name: string
 }
 
 function Note({name}:NoteProps): JSX.Element {
