@@ -4,16 +4,30 @@ import ControlPanel from './components/ControlPanel';
 import { useState } from 'react';
 
 function App() {
-  const [currentStartingNote, setCurrentStartingNote] = useState(startingNote);
+  const [currentNote, setCurrentNote] = useState(startingNote);
+  const [currentScale, setCurrentScale] = useState(scales['all']);
 
-  const handleStartingNoteChange = (note: string) => {
-    setCurrentStartingNote(note);
+  function handleNoteChange(note: string) {
+    setCurrentNote(note);
+  }
+
+  function handleScaleChange(scale: string) {
+    const selectedScale = scales[scale as keyof typeof scales];
+    setCurrentScale(selectedScale);
   }
 
   return (
     <div className="App">
-      <ControlPanel onStartingNoteChange={handleStartingNoteChange} />
-      <Board fretboard={standardTuning} startingNote={currentStartingNote} scaleFormula={major} />);
+      <h2>Control Panel</h2>
+      <ControlPanel
+        onNoteChange={handleNoteChange}
+        onScaleChange={handleScaleChange}
+      />
+      <Board
+        fretboard={standardTuning}
+        startingNote={currentNote}
+        scaleFormula={currentScale}
+      />
     </div>
   );
 }
@@ -21,10 +35,29 @@ function App() {
 
 const startingNote:string = 'C';
 
-const major      = [true, false, true, false, true, true, false, true, false, true, false, true];
+interface ScaleMap {
+  [key: string]: boolean[];
+}
 
-const all        = [true, true, true, true, true, true, true, true, true, true, true, true];
-const minor_pent = [true, false, false, true, false, true, false, true, false, false, true, false];
+const scales: ScaleMap = {
+// for reference  'C', 'C#',  'D',   'D#',  'E',   'F',   'F#',  'G',  'G#',  'A',   'A#',  'B'
+  all:          [true, true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true],
+  one_note:     [true, false, false, false, false, false, false, false, false, false, false, false],
+  major:        [true, false, true,  false, true,  true,  false, true,  false, true,  false, true],
+  minor:        [true, false, true,  true,  false, true,  false, true,  true,  false, true,  false],
+  minor_pent:   [true, false, false, true,  false, true,  false, true,  false, false, true,  false],
+  major_pent:   [true, false, true,  false, true,  false, false, true,  false, true,  false, true],
+  major_triads: [true, false, false, false, true,  false, false, true,  false, false, false, false],
+  minor_triads: [true, false, false, true,  false, false, false, true,  false, false, false, false],
+  whole_tone:   [true, false, true,  false, true,  false, true,  false, true,  false, true,  false],
+  ionian:       [true, false, true,  false, true,  true,  false, true,  false, true,  false, true],
+  dorian:       [true, false, true,  true,  false, true,  false, true,  false, true,  true,  false],
+  phrygian:     [true, true,  false, true,  false, true,  false, true,  true,  false, true,  false],
+  lydian:       [true, false, true,  false, true,  false, true,  true,  false, true,  false, true],
+  mixolydian:   [true, false, true,  false, true,  true,  false, true,  false, true,  true,  false],
+  aeolian:      [true, false, true,  true,  false, true,  false, true,  true,  false, true,  false],
+  locrian:      [true, true,  false, true,  false, true,  true,  false, true,  false, true,  false]
+}
 
 const standardTuning: string[][] = [
   ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'],

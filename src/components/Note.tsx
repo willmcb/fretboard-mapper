@@ -5,7 +5,7 @@ export interface NoteProps {
 }
 
 function Note({name}:NoteProps): JSX.Element {
-  if (name === '-') {
+  if (name === '|') {
     return (
       <span data-testid="note-elem" className="note blank-note" >
        {name}

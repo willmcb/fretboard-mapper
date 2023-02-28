@@ -1,9 +1,5 @@
 import { NoteProps } from '../components/Note';
 
-const major      = [true, false, true, false, true, true, false, true, false, true, false, true];
-const all        = [true, true, true, true, true, true, true, true, true, true, true, true];
-const minor_pent = [true, false, false, true, false, true, false, true, false, false, true, false];
-
 const standardTuning: string[][] = [
   ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'],
   ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'],
@@ -64,7 +60,7 @@ function reorderByStartingNote(startIndex:number, tempString:any[]) {
 
 function removeNotesNotInFormula(tempString:any[], scale:boolean[]) {
   const zipped = tempString.map((note, index) => [note, scale[index]]);
-  return zipped.map((pair) => (pair[1] ? pair[0] : '-'));
+  return zipped.map((pair) => (pair[1] ? pair[0] : '|'));
 }
 
 function rotateFretBoard<T>(board: T[][]): T[][] {

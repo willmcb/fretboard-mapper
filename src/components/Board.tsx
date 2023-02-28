@@ -15,12 +15,13 @@ function Board({fretboard, startingNote, scaleFormula}:BoardProps): JSX.Element 
 
     return (
       <div className="board">
-        <Nut/>
-        {currentFretboardData.map((notes:NoteProps[], index) => (
-          <Fret key={`fret-${index}`} notes={notes} />
-        ))}
+        {currentFretboardData.map((notes:NoteProps[], index) => [
+            <Fret key={`fret-${index}`} notes={notes} />,
+            index === 0 && <Nut key={`nut-${index}`} />,
+        ])}
       </div>
     );
+
 }
 
 export default Board;

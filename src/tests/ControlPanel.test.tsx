@@ -4,7 +4,7 @@ import ControlPanel from '../components/ControlPanel';
 const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
 test('ControlPanel should render the select element with options', () => {
-  const { getByLabelText } = render(<ControlPanel onStartingNoteChange={() => {}} />);
+  const { getByLabelText } = render(<ControlPanel onNoteChange={() => {}} />);
   const selectElement = getByLabelText(/select a starting note/i);
 
   expect(selectElement).toBeInTheDocument();
@@ -19,7 +19,7 @@ test('ControlPanel should render the select element with options', () => {
 
 test('ControlPanel should call the onStartingNoteChange prop with the new note value', () => {
   const onStartingNoteChangeMock = jest.fn();
-  const { getByLabelText } = render(<ControlPanel onStartingNoteChange={onStartingNoteChangeMock} />);
+  const { getByLabelText } = render(<ControlPanel onNoteChange={onNoteChangeMock} />);
   const selectElement = getByLabelText(/select a starting note/i);
 
   fireEvent.change(selectElement, { target: { value: 'D' } });
