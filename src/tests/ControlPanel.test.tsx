@@ -1,29 +1,55 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import ControlPanel from '../components/ControlPanel';
 
-const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+// TODO: Add tests for each rendered input?
+//       Add checks for the drop downs values?
 
-test('ControlPanel should render the select element with options', () => {
-  const { getByLabelText } = render(<ControlPanel onNoteChange={() => {}} />);
-  const selectElement = getByLabelText(/select a starting note/i);
+describe('ControlPanel', () => {
+  const onNoteChangeMock   = jest.fn();
+  const onScaleChangeMock  = jest.fn();
+  const onTuningChangeMock = jest.fn();
 
-  expect(selectElement).toBeInTheDocument();
-  expect(selectElement).toHaveAttribute('id', 'note-select');
-  expect(selectElement).toHaveValue('C');
-  expect(selectElement.children).toHaveLength(12);
+  const notes: string[]    = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
-  notes.forEach((note, index) => {
-    expect(selectElement.children[index]).toHaveTextContent(note);
+  beforeEach(() => {
+    render(
+      <ControlPanel
+        onNoteChange={onNoteChangeMock}
+        onScaleChange={onScaleChangeMock}
+        onTuningChange={onTuningChangeMock}
+        />
+    );
+  });
+
+  it('renders the note select element with options', () => {
+    const noteSelect = screen.getByLabelText(/Select a starting note/i);
+
+    expect(noteSelect).toBeInTheDocument();
+    expect(noteSelect).toHaveAttribute('id', 'note-select');
+    expect(noteSelect).toHaveValue('C');
+    expect(noteSelect.children).toHaveLength(12);
+
+    notes.forEach((note, index) => {
+      expect(noteSelect.children[index]).toHaveTextContent(note);
+    });
+  });
+
+  it('calls the onNoteChange prop with the new note value', () => {
+    const noteSelect = screen.getByLabelText(/Select a starting note/i);
+
+    fireEvent.change(noteSelect, { target: { value: 'D' } });
+
+    expect(onNoteChangeMock).toHaveBeenCalledTimes(1);
+    expect(onNoteChangeMock).toHaveBeenCalledWith('D');
+  });
+
+  it('calls the onScaleChange prop with the new scale value', () => {
+    const scaleSelect = screen.getByLabelText(/Select a scale/i);
+
+    fireEvent.change(scaleSelect, { target: { value: 'minor' } });
+
+    expect(onScaleChangeMock).toHaveBeenCalledTimes(1);
+    expect(onScaleChangeMock).toHaveBeenCalledWith('minor');
   });
 });
 
-test('ControlPanel should call the onStartingNoteChange prop with the new note value', () => {
-  const onStartingNoteChangeMock = jest.fn();
-  const { getByLabelText } = render(<ControlPanel onNoteChange={onNoteChangeMock} />);
-  const selectElement = getByLabelText(/select a starting note/i);
-
-  fireEvent.change(selectElement, { target: { value: 'D' } });
-
-  expect(onStartingNoteChangeMock).toHaveBeenCalledTimes(1);
-  expect(onStartingNoteChangeMock).toHaveBeenCalledWith('D');
-});
