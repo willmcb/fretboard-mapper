@@ -4,10 +4,10 @@ function calculateFretboard(fretboard:string[][], startingNote: string, scaleFor
   const scale:boolean[] = [...scaleFormula].flatMap(() => scaleFormula).slice(0, 12);
 
   const processedBoard   = fretboard.map((string) => processGuitarString(string, startingNote, scale));
-  const rotatedFretboard = rotateFretBoard(processedBoard);
-  const withNoteObjs     = addNoteObjects(rotatedFretboard);
 
-  return withNoteObjs;
+  const rotatedFretboard = rotateFretBoard(processedBoard);
+
+  return rotatedFretboard;
 }
 
 function processGuitarString(string: string[], startingNote: string, scale:boolean[]) {
@@ -16,11 +16,23 @@ function processGuitarString(string: string[], startingNote: string, scale:boole
   string = reorderByStartingNote(startIndex, string);
   string = removeNotesNotInFormula(string, scale);
 
-  let frontPart = string.slice(string.length - startIndex);
-  let backPart  = string.slice(0, string.length - startIndex);
+  let noteObjects = createNoteObjects(string);
+
+  let frontPart = noteObjects.slice(string.length - startIndex);
+  let backPart  = noteObjects.slice(0, string.length - startIndex);
 
   return frontPart.concat(backPart);
 };
+
+// add more info to notes in this function
+function createNoteObjects(string: string[]) {
+  return string.map((note, index) => {
+    return {
+      name: note,
+      degree: index === 0 ? 1 : 100
+    }
+  });
+}
 
 function reorderByStartingNote(startIndex:number, tempString:any[]) {
   if (startIndex !== 0) {
@@ -50,11 +62,4 @@ function rotateFretBoard<T>(board: T[][]): T[][] {
   return result;
 }
 
-function addNoteObjects(fretBoard: string[][]): NoteProps[][] {
-  return fretBoard.map((string) => {
-    return string.map((note) => {
-      return { name: note };
-    });
-  });
-}
 export default calculateFretboard

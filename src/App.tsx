@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
   const [currentNote, setCurrentNote] = useState(startingNote);
-  const [currentScale, setCurrentScale] = useState(scales['all']);
+  const [currentScale, setCurrentScale] = useState(scales['major']);
   const [currentTuning, setCurrentTuning] = useState(tunings['standard_tuning']);
 
   function handleNoteChange(note: string) {
@@ -65,6 +65,11 @@ const scales: ScaleMap = {
   aeolian:      [true, false, true,  true,  false, true,  false, true,  true,  false, true,  false],
   locrian:      [true, true,  false, true,  false, true,  true,  false, true,  false, true,  false]
 }
+
+// const degrees: ScaleMap = {
+//   set out the degrees for each scale type / chord
+// }
+
 
 interface TuningMap {
   [key: string]: string[][];

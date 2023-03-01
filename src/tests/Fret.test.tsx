@@ -5,21 +5,27 @@ import { NoteProps } from '../components/Note';
 const notePropsArray: NoteProps[] = [
   {
     name: "E",
+    degree: 0
   },
   {
     name: "A",
+    degree: 1
   },
   {
     name: "D",
+    degree: 2
   },
   {
     name: "G",
+    degree: 3
   },
   {
     name: "B",
+    degree: 4
   },
   {
     name: "E",
+    degree: 5
   }
 ]
 

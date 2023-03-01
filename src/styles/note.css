@@ -26,3 +26,15 @@
   margin: 5px;
   line-height: 47px; /* set to equal the height of the span */
 }
+
+.root {
+  border: 2px solid red;
+}
+
+.third {
+  border: 2px solid orange;
+}
+
+.fifth {
+  border: 2px solid green;
+}
