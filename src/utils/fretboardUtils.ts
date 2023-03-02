@@ -4,7 +4,6 @@ function calculateFretboard(fretboard:string[][], startingNote: string, scaleFor
   const scale:boolean[] = [...scaleFormula].flatMap(() => scaleFormula).slice(0, 12);
 
   const processedBoard   = fretboard.map((string) => processGuitarString(string, startingNote, scale));
-
   const rotatedFretboard = rotateFretBoard(processedBoard);
 
   return rotatedFretboard;
@@ -60,6 +59,15 @@ function rotateFretBoard<T>(board: T[][]): T[][] {
   }
 
   return result;
+}
+
+export {
+  calculateFretboard,
+  processGuitarString,
+  createNoteObjects,
+  reorderByStartingNote,
+  removeNotesNotInFormula,
+  rotateFretBoard
 }
 
 export default calculateFretboard
