@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import {
+  all_notes,
+  scales,
+  tunings
+} from '../utils/reference_data/control_panel'
 
 interface ControlPanelProps {
   onNoteChange:   (note: string) => void;
@@ -68,88 +73,5 @@ function ControlPanel({ onNoteChange, onScaleChange, onTuningChange}: ControlPan
   )
 }
 
-const all_notes  = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-
-const scales = [
-  {
-    name: 'All notes',
-    value: 'all'
-  },
-  {
-    name: 'One note',
-    value: 'one_note'
-  },
-  {
-    name: 'Major',
-    value: 'major'
-  },
-  {
-    name: 'Minor',
-    value: 'minor'
-  },
-  {
-    name: 'Major Pentatonic',
-    value: 'major_pent'
-  },
-  {
-    name: 'Minor pentatonic',
-    value: 'minor_pent'
-  },
-  {
-    name: 'Major triads',
-    value: 'major_triads'
-  },
-  {
-    name: 'Minor triads',
-    value: 'minor_triads'
-  },
-  {
-    name: 'Whole tone scale',
-    value: 'whole_tone'
-  },
-  {
-    name: 'Ionian',
-    value: 'ionian'
-  },
-  {
-    name: 'Dorian',
-    value: 'dorian'
-  },
-  {
-    name: 'Phrygian',
-    value: 'phrygian'
-  },
-  {
-    name: 'Lydian',
-    value: 'lydian'
-  },
-  {
-    name: 'Mixolydian',
-    value: 'mixolydian'
-  },
-  {
-    name: 'Aeolian',
-    value: 'aeolian'
-  },
-  {
-    name: 'Locrian',
-    value: 'locrian'
-  }
-]
-
-const tunings = [
-  {
-    name: 'Standard tuning',
-    value: 'standard_tuning'
-  },
-  {
-    name: 'DADGAD Tuning',
-    value: 'dadgad_tuning'
-  },
-  {
-    name: 'Drop D Tuning',
-    value: 'drop_d_tuning'
-  }
-]
 
 export default ControlPanel;
