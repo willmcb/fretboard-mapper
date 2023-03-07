@@ -7,12 +7,14 @@ import {
   scales,
   tunings,
   ScaleMap,
+  degrees,
   TuningMap
 } from './utils/reference_data/app';
 
 function App() {
   const [currentNote, setCurrentNote] = useState(startingNote);
   const [currentScale, setCurrentScale] = useState(scales['major']);
+  const [currentDegree, setCurrentDegree] = useState(degrees['major']);
   const [currentTuning, setCurrentTuning] = useState(tunings['standard_tuning']);
 
   function handleNoteChange(note: string) {
@@ -20,8 +22,11 @@ function App() {
   }
 
   function handleScaleChange(scale: string) {
-    const selectedScale = scales[scale as keyof typeof scales];
+    const selectedScale  = scales[scale as keyof typeof scales];
+    const selectedDegree = degrees[scale as keyof typeof degrees];
+    console.log(selectedDegree);
     setCurrentScale(selectedScale);
+    setCurrentDegree(selectedDegree);
   }
 
   function handleTuningChange(tuning: string) {
@@ -41,6 +46,7 @@ function App() {
         fretboard={currentTuning}
         startingNote={currentNote}
         scaleFormula={currentScale}
+        degree={currentDegree}
       />
     </div>
   );

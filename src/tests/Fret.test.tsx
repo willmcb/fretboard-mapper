@@ -9,7 +9,7 @@ const notePropsArray: NoteProps[] = [
   },
   {
     name: "A",
-    degree: 1
+    degree: 0
   },
   {
     name: "D",

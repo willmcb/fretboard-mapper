@@ -1,21 +1,23 @@
 import { NoteProps } from '../components/Note';
+import { degrees } from './reference_data/app';
+import { Degree } from './reference_data/app';
 
-function calculateFretboard(fretboard:string[][], startingNote: string, scaleFormula: boolean[]): NoteProps[][] {
+function calculateFretboard(fretboard:string[][], startingNote: string, scaleFormula: boolean[], degree: Degree[]): NoteProps[][] {
   const scale:boolean[] = [...scaleFormula].flatMap(() => scaleFormula).slice(0, 12);
 
-  const processedBoard   = fretboard.map((string) => processGuitarString(string, startingNote, scale));
+  const processedBoard   = fretboard.map((string) => processGuitarString(string, startingNote, scale, degree));
   const rotatedFretboard = rotateFretBoard(processedBoard);
 
   return rotatedFretboard;
 }
 
-function processGuitarString(string: string[], startingNote: string, scale:boolean[]) {
+function processGuitarString(string: string[], startingNote: string, scale:boolean[], degree: Degree[]) {
   const startIndex = string.indexOf(startingNote);
 
   string = reorderByStartingNote(startIndex, string);
   string = removeNotesNotInFormula(string, scale);
 
-  let noteObjects = createNoteObjects(string);
+  let noteObjects = createNoteObjects(string, degree);
 
   let frontPart = noteObjects.slice(string.length - startIndex);
   let backPart  = noteObjects.slice(0, string.length - startIndex);
@@ -24,11 +26,18 @@ function processGuitarString(string: string[], startingNote: string, scale:boole
 };
 
 // add more info to notes in this function
-function createNoteObjects(string: string[]) {
+function createNoteObjects(string: string[], degree: Degree[]) {
   return string.map((note, index) => {
-    return {
-      name: note,
-      degree: index === 0 ? 1 : 100
+    if (note == '|') {
+      return {
+        name: note,
+        degree: null
+      }
+    } else {
+      return {
+        name: note,
+        degree: degree[index]
+      }
     }
   });
 }

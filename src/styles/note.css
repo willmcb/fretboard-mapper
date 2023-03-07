@@ -31,8 +31,12 @@
   border: 2px solid red;
 }
 
-.third {
+.major-third {
   border: 2px solid orange;
+}
+
+.minor-third {
+  border: 2px solid blue;
 }
 
 .fifth {
