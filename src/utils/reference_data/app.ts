@@ -304,12 +304,3 @@ export type {
   TuningMap,
   Degree
 }
-
-blank
-root
-maj_second
-maj_third
-per_forth
-per_fifth
-maj_sixth
-maj_seventh

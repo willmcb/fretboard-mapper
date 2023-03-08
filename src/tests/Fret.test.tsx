@@ -1,31 +1,42 @@
 import { render, screen } from '@testing-library/react';
 import Fret from '../components/Fret';
 import { NoteProps } from '../components/Note';
+import {
+  blank,
+  root,
+  maj_second,
+  maj_third,
+  per_forth,
+  per_fifth,
+  maj_sixth,
+  maj_seventh,
+  degrees,
+} from '../utils/reference_data/app';
 
 const notePropsArray: NoteProps[] = [
   {
     name: "E",
-    degree: 0
+    degree: maj_third
   },
   {
     name: "A",
-    degree: 0
+    degree: maj_sixth
   },
   {
     name: "D",
-    degree: 2
+    degree: maj_second
   },
   {
     name: "G",
-    degree: 3
+    degree: per_fifth
   },
   {
     name: "B",
-    degree: 4
+    degree: per_forth
   },
   {
     name: "E",
-    degree: 5
+    degree: maj_third
   }
 ]
 
