@@ -285,6 +285,14 @@ const tunings: TuningMap = {
 }
 
 export {
+  blank,
+  root,
+  maj_second,
+  maj_third,
+  per_forth,
+  per_fifth,
+  maj_sixth,
+  maj_seventh,
   startingNote,
   scales,
   degrees,
@@ -297,3 +305,11 @@ export type {
   Degree
 }
 
+blank
+root
+maj_second
+maj_third
+per_forth
+per_fifth
+maj_sixth
+maj_seventh

@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import Board from '../components/Board';
 import calculateFretboard from '../utils/fretboardUtils'
+import { degrees } from '../utils/reference_data/app';
+
+const degree = degrees['major'];
 
 const testMajor = [true, false, true, false, true, true, false, true, false, true, false, true];
 
@@ -16,14 +19,22 @@ const startingNote:string = 'G'
 
 test('Board should have 12 frets', () => {
   const {container} = render(
-    <Board fretboard={testFretboard} startingNote={startingNote} scaleFormula={testMajor} />
+    <Board fretboard={testFretboard}
+           startingNote={startingNote}
+           scaleFormula={testMajor}
+           degree={degree} />
   );
 
   expect(container.getElementsByClassName('fret').length).toBe(12);
 });
 
 test('Board should have the correct notes', () => {
-  render( <Board fretboard={testFretboard} startingNote={startingNote} scaleFormula={testMajor} />);
+  render(
+    <Board fretboard={testFretboard}
+           startingNote={startingNote}
+           scaleFormula={testMajor}
+           degree={degree} />
+  );
 
   const noteElements = screen.getAllByTestId('note-elem');
   const noteTexts = noteElements.map(el => el.textContent);

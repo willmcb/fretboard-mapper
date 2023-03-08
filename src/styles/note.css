@@ -9,7 +9,7 @@
   height: 50px;
   border: 1px solid black;
   border-radius: 50%;
-  margin: 5px;
+  margin: 6px;
   text-align: center;
   line-height: 47px; /* set to equal the height of the span */
 }

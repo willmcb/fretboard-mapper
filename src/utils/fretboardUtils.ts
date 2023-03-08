@@ -1,6 +1,7 @@
 import { NoteProps } from '../components/Note';
 import { degrees } from './reference_data/app';
 import { Degree } from './reference_data/app';
+import { blank } from './reference_data/app';
 
 function calculateFretboard(fretboard:string[][], startingNote: string, scaleFormula: boolean[], degree: Degree[]): NoteProps[][] {
   const scale:boolean[] = [...scaleFormula].flatMap(() => scaleFormula).slice(0, 12);
@@ -31,7 +32,7 @@ function createNoteObjects(string: string[], degree: Degree[]) {
     if (note == '|') {
       return {
         name: note,
-        degree: null
+        degree: blank
       }
     } else {
       return {
