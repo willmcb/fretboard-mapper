@@ -3,6 +3,8 @@ import Fret from './Fret';
 import { NoteProps } from './Note';
 import calculateFretboard from '../utils/fretboardUtils'
 import { Degree } from '../utils/reference_data/app'
+import '../styles/board.css';
+
 
 export interface BoardProps {
   fretboard: string[][],

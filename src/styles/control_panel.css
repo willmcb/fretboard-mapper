@@ -1,0 +1,7 @@
+.control-panel {
+  display: flex;
+  order: 1;
+  flex-direction: column;
+  width: 50%;
+}
+

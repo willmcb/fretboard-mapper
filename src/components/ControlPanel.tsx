@@ -4,6 +4,7 @@ import {
   scales,
   tunings
 } from '../utils/reference_data/control_panel'
+import '../styles/control_panel.css';
 
 interface ControlPanelProps {
   onNoteChange:   (note: string) => void;
@@ -37,8 +38,14 @@ function ControlPanel({ onNoteChange, onScaleChange, onTuningChange}: ControlPan
 
   return (
     <div className="control-panel">
+      <h2>Control panel</h2>
       <label htmlFor="note-select">Select a starting note:</label>
-      <select id="note-select" value={selectedNote} onChange={handleNoteChange}>
+      <select
+        className="select"
+        id="note-select"
+        value={selectedNote}
+        onChange={handleNoteChange}>
+
         {all_notes.map((note) => (
           <option key={note} value={note}>
             {note}
@@ -46,11 +53,12 @@ function ControlPanel({ onNoteChange, onScaleChange, onTuningChange}: ControlPan
         ))}
       </select>
 
-      <br></br>
-      <br></br>
-
       <label htmlFor="scale-select">Select a scale:</label>
-      <select id="scale-select" value={selectedScale} onChange={handleScaleChange}>
+      <select
+        className="select"
+        id="scale-select"
+        value={selectedScale}
+        onChange={handleScaleChange}>
         {scales.map((scale) => (
           <option key={scale.name} value={scale.value}>
             {scale.name}
@@ -58,11 +66,13 @@ function ControlPanel({ onNoteChange, onScaleChange, onTuningChange}: ControlPan
         ))}
       </select>
 
-      <br></br>
-      <br></br>
+      <label htmlFor="select">Select a tuning:</label>
+      <select
+        className="selector"
+        id="tuning-select"
+        value={selectedTuning}
+        onChange={handleTuningChange}>
 
-      <label htmlFor="tuning-select">Select a tuning:</label>
-      <select id="tuning-select" value={selectedTuning} onChange={handleTuningChange}>
         {tunings.map((tuning) => (
           <option key={tuning.name} value={tuning.value}>
             {tuning.name}

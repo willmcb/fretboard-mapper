@@ -36,7 +36,6 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Control Panel</h2>
       <ControlPanel
         onNoteChange={handleNoteChange}
         onScaleChange={handleScaleChange}

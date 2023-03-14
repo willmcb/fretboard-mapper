@@ -1,5 +1,7 @@
 .fret {
+  display: flex;
+  flex-direction: row;
   border-bottom: 3px solid black;
-  width: 27%
+  width: 50%;
 }
 
